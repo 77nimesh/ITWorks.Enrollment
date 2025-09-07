@@ -38,7 +38,7 @@ namespace ITWorks.Enrollment.ConsoleApp
             set.Add(s3);
             Console.WriteLine($"HashSet count (expect 2): {set.Count}\n");
 
-            var sub = new Subject("ICTPRG547", "Data Structures and Algorithms", 0m);
+            var sub = new Subject("ICTPRG547", "Apply advanced programming skills in another language", 0m);
             var enr = new Enrollment(s1.StudentID, sub.SubjectCode, DateTime.Today, "SA", "S2");
             Console.WriteLine(addr);
             Console.WriteLine(sub);
