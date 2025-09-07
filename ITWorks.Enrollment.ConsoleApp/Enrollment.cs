@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ITWorks.Enrollment.ConsoleApp
 {
-    /// <summary>Links a Student to a Subject with enrolment details.</summary>
+    /// <summary>Links a Student to a Subject with enrolment details. </summary>
     public class Enrollment
     {
         /// <summary>Student ID linking to Student.StudentID.</summary>

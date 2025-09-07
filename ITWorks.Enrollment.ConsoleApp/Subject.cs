@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ITWorks.Enrollment.ConsoleApp
 {
-    /// <summary>Subject offered for enrolment.</summary>
+    /// <summary>Subject offered for enrolment. </summary>
     public class Subject
     {
         /// <summary>Unique code for the subject.</summary>

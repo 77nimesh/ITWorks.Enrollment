@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ITWorks.Enrollment.ConsoleApp
 {
-    /// <summary>Student inherits Person. Equality &amp; hashing by StudentID (case-insensitive).</summary>
+    /// <summary>Student inherits Person. Equality &amp; hashing by StudentID (case-insensitive). </summary>
     public class Student : Person, IEquatable<Student>
     {
         /// <summary>Default student ID constant.</summary>

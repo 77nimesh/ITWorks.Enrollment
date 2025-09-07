@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ITWorks.Enrollment.ConsoleApp
 {
-    /// <summary>Base entity for people in the system.</summary>
+    /// <summary>Base entity for people in the system. </summary>
     public class Person
     {
         /// <summary>Full name of the person.</summary>

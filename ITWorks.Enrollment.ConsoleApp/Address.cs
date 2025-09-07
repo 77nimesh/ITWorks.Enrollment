@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ITWorks.Enrollment.ConsoleApp
 {
-    /// <summary>Postal address (value object).</summary>
+    /// <summary>Postal address (value object). </summary>
     public class Address
     {
         /// <summary>Street number of the address.</summary>

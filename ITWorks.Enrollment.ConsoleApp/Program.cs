@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace ITWorks.Enrollment.ConsoleApp
 {
     /// <summary>
-    /// Entry point for the application. Tests OO classes constructors and standard methods.
+    /// Entry point for the application. Tests OO classes constructors and standard methods. 
     /// </summary>
     internal class Program
     {
