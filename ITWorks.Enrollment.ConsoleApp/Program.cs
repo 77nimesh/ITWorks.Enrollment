@@ -1,58 +1,57 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ITWorks.Enrollment.ConsoleApp
 {
-    /// <summary>
-    /// Entry point for the application. Tests OO classes constructors and standard methods. 
-    /// </summary>
     internal class Program
     {
-        /// <summary>
-        /// Main method to run the application and test classes.
-        /// </summary>
-        /// <param name="args">Command-line arguments.</param>
         static void Main(string[] args)
         {
+            Console.WriteLine("=== Initial Stage — Create Classes (Session 1 style) ===\n");
+
             var addr = new Address("1", "North Tce", "Adelaide", "5000", "SA");
+            Console.WriteLine("[Address] " + addr);
 
-            var s1 = new Student("A00123", "Nimesh G", "nimesh@example.com", "0400 000 000", addr, new DateTime(1994, 1, 10)) { Program = "ICT" };
-            var s2 = new Student("a00123", "Nimesh Gamage", "nimesh@example.com", "0400 111 111", addr, new DateTime(1994, 1, 11)) { Program = "ICT" };
-            var s3 = new Student("B00999", "Christy R", "Christy@example.com", "0400 222 222", new Address(), new DateTime(1994, 1, 12)) { Program = "WEB" };
+            var sub = new Subject("ICTPRG547", "Apply advanced programming skills", 0m);
+            Console.WriteLine("[Subject] " + sub);
 
-            Console.WriteLine("== Part 1: Equality & Hashing ==");
-            Console.WriteLine($"s1 == s2? {s1 == s2}  (expect True)");
-            Console.WriteLine($"s1.Equals(s2)? {s1.Equals(s2)}  (expect True)");
-            Console.WriteLine($"s1 == s3? {s1 == s3}  (expect False)\n");
+            var stu = new Student("A00123", "Nimesh G", "nimesh@example.com", "0400 000 000", addr, new DateTime(1994, 1, 10), "ICT");
+            Console.WriteLine("[Student] " + stu);
 
-            Console.WriteLine("Hash codes:");
-            Console.WriteLine($"s1: {s1.GetHashCode()}");
-            Console.WriteLine($"s2: {s2.GetHashCode()}  (expect same as s1)");
-            Console.WriteLine($"s3: {s3.GetHashCode()}\n");
+            var enr = new Enrolment(stu, sub, DateTime.Today, "SA", "S2-2025");
+            stu.Enrolment = enr;
 
-            var set = new HashSet<Student> { s1 };
-            set.Add(s2); // no new item (same StudentID)
-            set.Add(s3);
-            Console.WriteLine($"HashSet count (expect 2): {set.Count}\n");
+            Console.WriteLine("[Enrolment] " + enr);
 
-            var sub = new Subject("ICTPRG547", "Apply advanced programming skills in another language", 0m);
-            var enr = new Enrollment(s1.StudentID, sub.SubjectCode, DateTime.Today, "SA", "S2");
-            Console.WriteLine(addr);
-            Console.WriteLine(sub);
-            Console.WriteLine(enr+"\n");
+            // ---------- Part 1: Hashing tests ----------
+            Console.WriteLine("\n=== Part 1: Hashing (Equality & GetHashCode) ===");
 
-            var grades = new Dictionary<Student, string> { { s1, "NS" } };
-            grades[s2] = "SA"; // overwrites s1 (same key by StudentID)
-            grades[s3] = "CN";
-            Console.WriteLine($"Grade for s1 (expect SA): {grades[s1]}");
-            Console.WriteLine($"Lookup by s2 (expect SA): {grades[s2]}");
-            Console.WriteLine($"Grade for s3 (expect CN): {grades[s3]}");
+            var sA = new Student("A00123", "Nimesh G", "nimesh@example.com", "0400 000 000", addr, new DateTime(1994, 1, 10), "ICT");
+            var sB = new Student("a00123", "Nimesh Gamage", "nimesh@example.com", "0400 111 111", addr, new DateTime(1994, 1, 11), "ICT");
+            var sC = new Student("B00999", "Christy R", "Christy@example.com", "0400 222 222", new Address(), new DateTime(1994, 1, 12), "WEB");
 
 
-            Console.WriteLine("\nDone. Press any key to exit...");
+            Console.WriteLine("Equals(sA, sB)         : " + sA.Equals(sB));           // True (same ID)
+            Console.WriteLine("sA == sB               : " + (sA == sB));              // True
+            Console.WriteLine("sA != sC               : " + (sA != sC));              // True (different ID)
+            Console.WriteLine("Hash(sA) == Hash(sB)   : " + (sA.GetHashCode() == sB.GetHashCode())); // True
+
+            // HashSet should keep only unique logical Students (by ID)
+            var set = new System.Collections.Generic.HashSet<Student>();
+            set.Add(sA);
+            set.Add(sB); // duplicate ID – should not increase count
+            set.Add(sC);
+            Console.WriteLine("HashSet Count (expect 2): " + set.Count);
+
+            // Dictionary lookup by key: using Student as key or using StudentID string
+            var dict = new System.Collections.Generic.Dictionary<Student, string>();
+            dict[sA] = "First record";
+            dict[sB] = "Overwrites same-ID"; // same key by equality/hashing
+            dict[sC] = "Another record";
+            Console.WriteLine("Dictionary Count (expect 2): " + dict.Count);
+            Console.WriteLine("Dictionary[sA]: " + dict[sA]); // "Overwrites same-ID"
+
+
+            Console.WriteLine("\nAll constructors and ToString() executed. Press any key...");
             Console.ReadKey();
         }
     }
