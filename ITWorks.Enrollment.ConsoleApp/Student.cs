@@ -2,6 +2,9 @@
 
 namespace ITWorks.Enrollment.ConsoleApp
 {
+    /// <summary>
+    /// Represents a student enrolled in the system, including personal details and enrollment information.
+    /// </summary>
     public class Student : Person, IComparable<Student>
     {
         public const string DEF_ID = "A00000";
