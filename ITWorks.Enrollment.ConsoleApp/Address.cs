@@ -22,7 +22,7 @@
             StreetName = streetName;
             Suburb = suburb;
             Postcode = postcode;
-            State = state;
+            State = state.ToUpper();
         }
 
         public override string ToString()

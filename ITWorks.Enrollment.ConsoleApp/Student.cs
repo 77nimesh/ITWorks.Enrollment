@@ -2,31 +2,40 @@
 
 namespace ITWorks.Enrollment.ConsoleApp
 {
-    /// <summary>
-    /// Represents a student enrolled in the system, including personal details and enrollment information.
-    /// </summary>
     public class Student : Person, IComparable<Student>
     {
         public const string DEF_ID = "A00000";
         public const string DEF_PROGRAM = "GEN";
-        public static readonly DateTime DEF_DOB = DateTime.MinValue;
+        public static readonly DateTime DEF_DOR = DateTime.MinValue;
 
         public string StudentID { get; set; }
         public string Program { get; set; }
-        public DateTime DateOfBirth { get; set; }
+        public DateTime DateOfRegister { get; set; }
 
         // Student has an Enrolment (from initial stage feedback)
         public Enrolment Enrolment { get; set; }
 
-        public Student() : this(DEF_ID, DEF_NAME, DEF_EMAIL, DEF_PHONE, new Address(), DEF_DOB, DEF_PROGRAM) { }
+        public Student() : this(DEF_ID, DEF_NAME, DEF_EMAIL, DEF_PHONE, new Address(), DEF_DOR, DEF_PROGRAM)
+        {
+        }
 
-        public Student(string studentId, string name, string email, string phone, Address address, DateTime dob, string program)
+        public Student(string studentId, string name, string email, string phone, Address address, DateTime dor, string program)
             : base(name, email, phone, address)
         {
             StudentID = studentId;
-            DateOfBirth = dob;
+            DateOfRegister = dor;
             Program = program;
         }
+
+        //Constructor that takes Person object
+        public Student(string studentId, Person person, DateTime dor, string program)
+            : base(person.Name, person.Email, person.PhoneNumber, person.Address)
+        {
+            StudentID = studentId;
+            DateOfRegister = dor;
+            Program = program;
+        }
+
 
         /// <summary>
         /// Determines logical equality of Student objects.
@@ -82,8 +91,7 @@ namespace ITWorks.Enrollment.ConsoleApp
 
         public override string ToString()
         {
-            return "StudentID: " + StudentID + ", Name: " + Name + ", Email: " + Email
-                 + ", Program: " + Program + ", Address: [" + Address + "]";
+            return "StudentID: " + StudentID + " " + base.ToString() + ", Program: " + Program + " Date of Registered: " + DateOfRegister.ToString("yyyy-MMM-dd");
         }
     }
 }

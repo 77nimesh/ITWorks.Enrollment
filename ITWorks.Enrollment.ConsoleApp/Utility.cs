@@ -23,20 +23,29 @@ namespace ITWorks.Enrollment
         ///  end while
         ///  return -1
         /// </remarks>
+       
         public static int LinearSearchArray<T>(T[] array, T target) where T : IComparable<T>
         {
             if (array == null) throw new ArgumentNullException(nameof(array));
-            for (int i = 0; i < array.Length; i++)
+            int i = 0;
+            bool found = false;
+            while (!found && i < array.Length)
             {
-                if (array[i] != null && array[i].CompareTo(target) == 0)
-                    return i;
+                if (array[i] != null && target.CompareTo(array[i]) == 0)
+                    found = true;
+                else
+                {
+                    i++;
+                }
+
             }
-            return -1;
+            if (i < array.Length)
+                return i;
+            else
+                return -1;
         }
 
-        // Optional alias if your brief misspells "Search" as "Seach"
-        public static int LinearSeachArray<T>(T[] array, T target) where T : IComparable<T>
-            => LinearSearchArray(array, target);
+       
 
         /// <summary>
         /// Binary search on a sorted (ascending) array. Returns index if found; otherwise -1.
@@ -56,84 +65,100 @@ namespace ITWorks.Enrollment
         ///  end while
         ///  return -1
         /// </remarks>
+       
         public static int BinarySearchArray<T>(T[] array, T target) where T : IComparable<T>
         {
+            //Array.Sort(array);
             if (array == null) throw new ArgumentNullException(nameof(array));
-            int low = 0, high = array.Length - 1;
-            while (low <= high)
+            int min = 0;
+            int max = array.Length - 1;
+            int mid;
+            do
             {
-                int mid = (low + high) / 2;
-                int cmp = target.CompareTo(array[mid]);
-                if (cmp == 0) return mid;
-                if (cmp < 0) high = mid - 1; else low = mid + 1;
-            }
+                mid = (min + max) / 2;
+                if (array[mid].CompareTo(target) == 0)
+                    return mid;
+                if (array[mid].CompareTo(target) < 0)
+                    min = mid + 1;
+                else
+                    max = mid - 1;
+            } while (min <= max);
             return -1;
         }
 
+
         /// <summary>
-        /// Selection sort (ascending). Sorts the array in place.
+        /// Bubble Sort (ascending). Repeatedly steps through the array,
+        /// compares adjacent elements and swaps them if they are in the wrong order.
+        /// The pass through the array is repeated until the array is sorted.
         /// </summary>
         /// <typeparam name="T">Any comparable type.</typeparam>
-        /// <param name="array">Array to sort (modified in place).</param>
+        /// <param name="array">Array to be sorted in ascending order (modified in place).</param>
         /// <remarks>
         /// Pseudocode:
-        ///  for i = 0 to n-2
-        ///     min = i
-        ///     for j = i+1 to n-1
-        ///        if array[j] < array[min] then min = j
+        ///  for pass = 0 to n - 2 do
+        ///     for i = 0 to n - 2 do
+        ///        if array[i] > array[i + 1] then
+        ///            swap array[i] and array[i + 1]
+        ///        end if
         ///     end for
-        ///     swap array[i], array[min]
         ///  end for
         /// </remarks>
+
         public static void SortArrayAscending<T>(T[] array) where T : IComparable<T>
         {
             if (array == null) throw new ArgumentNullException(nameof(array));
-            for (int i = 0; i < array.Length - 1; i++)
+            T temp;
+            for (int j = 0; j < array.Length - 1; j++)
             {
-                int min = i;
-                for (int j = i + 1; j < array.Length; j++)
-                    if (array[j].CompareTo(array[min]) < 0) min = j;
-
-                if (min != i)
+                for (int i = 0; i < array.Length - 1; i++)
                 {
-                    T tmp = array[i];
-                    array[i] = array[min];
-                    array[min] = tmp;
+                    if (array[i].CompareTo(array[i + 1]) > 0)
+                    {
+                        temp = array[i + 1];
+                        array[i + 1] = array[i];
+                        array[i] = temp;
+                    }
                 }
             }
         }
 
+
         /// <summary>
-        /// Selection sort (descending). Sorts the array in place.
+        /// Bubble Sort (descending). Repeatedly steps through the array,
+        /// compares adjacent elements and swaps them if they are in the wrong order (larger first).
+        /// The process continues until no more swaps are needed, resulting in a descending order.
         /// </summary>
         /// <typeparam name="T">Any comparable type.</typeparam>
-        /// <param name="array">Array to sort (modified in place).</param>
+        /// <param name="array">Array to be sorted in descending order (modified in place).</param>
         /// <remarks>
         /// Pseudocode:
-        ///  for i = 0 to n-2
-        ///     max = i
-        ///     for j = i+1 to n-1
-        ///        if array[j] > array[max] then max = j
+        ///  for pass = 0 to n - 2 do
+        ///     for i = 0 to n - 2 do
+        ///        if array[i] < array[i + 1] then
+        ///            swap array[i] and array[i + 1]
+        ///        end if
         ///     end for
-        ///     swap array[i], array[max]
         ///  end for
         /// </remarks>
+
         public static void SortArrayDescending<T>(T[] array) where T : IComparable<T>
         {
             if (array == null) throw new ArgumentNullException(nameof(array));
-            for (int i = 0; i < array.Length - 1; i++)
+            T temp;
+            for (int j = 0; j < array.Length - 1; j++)
             {
-                int max = i;
-                for (int j = i + 1; j < array.Length; j++)
-                    if (array[j].CompareTo(array[max]) > 0) max = j;
-
-                if (max != i)
+                for (int i = 0; i < array.Length - 1; i++)
                 {
-                    T tmp = array[i];
-                    array[i] = array[max];
-                    array[max] = tmp;
+                    if (array[i].CompareTo(array[i + 1]) < 0)
+                    {
+                        temp = array[i + 1];
+                        array[i + 1] = array[i];
+                        array[i] = temp;
+                    }
                 }
             }
         }
+
     }
 }

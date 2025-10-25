@@ -21,7 +21,7 @@
 
         public override string ToString()
         {
-            return SubjectCode + " - " + SubjectName + " ($" + Cost.ToString("0.00") + ")";
+            return "Subject Code: " + SubjectCode + " Subject Name: " + SubjectName + " Subject cost $" + Cost.ToString("0.00");
         }
     }
 }

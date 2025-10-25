@@ -23,7 +23,7 @@
 
         public override string ToString()
         {
-            return "Name=" + Name + ", Email=" + Email + ", Phone=" + PhoneNumber + ", Address=(" + Address + ")";
+            return "Name: " + Name + ", Email: " + Email + ", Phone: " + PhoneNumber + ", Address: (" + Address + ")";
         }
     }
 }

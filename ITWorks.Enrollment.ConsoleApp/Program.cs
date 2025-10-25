@@ -6,28 +6,48 @@ namespace ITWorks.Enrollment.ConsoleApp
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("=== Initial Stage — Create Classes (Session 1 style) ===\n");
+            Console.WriteLine("\t\t------- Initial Stage — Create Classes (Session 1 style) --------\n");
 
-            var addr = new Address("1", "North Tce", "Adelaide", "5000", "SA");
-            Console.WriteLine("[Address] " + addr);
+            Address addr = new Address();
+            Console.WriteLine("[Default Address] " + addr + "\n");
+            addr = new Address("1", "North Tce", "Adelaide", "5000", "sa");
+            Console.WriteLine("[Address all-arg] " + addr + "\n");
 
-            var sub = new Subject("ICTPRG547", "Apply advanced programming skills", 0m);
-            Console.WriteLine("[Subject] " + sub);
+            Person per = new Person();
+            Console.WriteLine("[Default Person] " + per + "\n");
+            per = new Person("Nimesh", "nimesh@example.com", "04123 456 789", addr);
+            Console.WriteLine("[Person all-arg] " + per + "\n");
 
-            var stu = new Student("A00123", "Nimesh G", "nimesh@example.com", "0400 000 000", addr, new DateTime(1994, 1, 10), "ICT");
-            Console.WriteLine("[Student] " + stu);
+            Subject sub = new Subject();
+            Console.WriteLine("[Default Subject] " + sub + "\n");
+            sub = new Subject("ICTPRG547", "Apply advanced programming skills", 0m);
+            Console.WriteLine("[Subject all-arg] " + sub + "\n");
 
-            var enr = new Enrolment(stu, sub, DateTime.Today, "SA", "S2-2025");
-            stu.Enrolment = enr;
+            Enrolment enr = new Enrolment();
+            Console.WriteLine("[Default Enrolmant]" + enr + "\n");
+            enr = new Enrolment(sub, DateTime.Today, "SA", "S2-2025");
+            Console.WriteLine("[Enrolment all-arg] " + enr + "\n");
 
-            Console.WriteLine("[Enrolment] " + enr);
+            Student stu = new Student();
+            Console.WriteLine("[Default Student] " + stu + "\n");
+            stu = new Student("A00123", "Nimesh G", "nimesh@example.com", "0400 000 000", addr, new DateTime(2025, 1, 10), "ICT");
+            Console.WriteLine("[Student all-agr] " + stu + "\n");
+
+            Student stu1 = new Student("A00134", per, new DateTime(2025, 10, 25), "IT");
+            Console.WriteLine("[Student with Person obj] " + stu1 + "\n");
 
             // ---------- Part 1: Hashing tests ----------
-            Console.WriteLine("\n=== Part 1: Hashing (Equality & GetHashCode) ===");
+            Console.WriteLine("\n\t\t------------ Part 1: Hashing (Equality & GetHashCode) -------------\n");
 
             var sA = new Student("A00123", "Nimesh G", "nimesh@example.com", "0400 000 000", addr, new DateTime(1994, 1, 10), "ICT");
             var sB = new Student("a00123", "Nimesh Gamage", "nimesh@example.com", "0400 111 111", addr, new DateTime(1994, 1, 11), "ICT");
             var sC = new Student("B00999", "Christy R", "Christy@example.com", "0400 222 222", new Address(), new DateTime(1994, 1, 12), "WEB");
+            Console.WriteLine("[Test Data Samples]\n");
+            Console.WriteLine("sA : " + sA);
+            Console.WriteLine("sB : " + sB);
+            Console.WriteLine("sC : " + sC);
+            Console.WriteLine("\n[Results]");
+
 
 
             Console.WriteLine("Equals(sA, sB)         : " + sA.Equals(sB));           // True (same ID)
@@ -52,7 +72,7 @@ namespace ITWorks.Enrollment.ConsoleApp
 
 
             Console.WriteLine("\nAll constructors and ToString() executed. Press any key...");
-            Console.ReadKey();
+
         }
     }
 }
