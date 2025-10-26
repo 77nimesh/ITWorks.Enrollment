@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITWorks.Enrollment.ConsoleA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITWorks.Enrollment.Tests", "ITWorks.Enrollment.Tests\ITWorks.Enrollment.Tests.csproj", "{7823BB60-DB20-465F-82C8-C154BE9C7E4A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataStructures", "DataStructures\DataStructures.csproj", "{2B532CC7-4F30-4A52-8BB5-B4F5C17DD529}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{7823BB60-DB20-465F-82C8-C154BE9C7E4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7823BB60-DB20-465F-82C8-C154BE9C7E4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7823BB60-DB20-465F-82C8-C154BE9C7E4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B532CC7-4F30-4A52-8BB5-B4F5C17DD529}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B532CC7-4F30-4A52-8BB5-B4F5C17DD529}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B532CC7-4F30-4A52-8BB5-B4F5C17DD529}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B532CC7-4F30-4A52-8BB5-B4F5C17DD529}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

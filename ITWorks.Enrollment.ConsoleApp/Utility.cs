@@ -26,23 +26,36 @@ namespace ITWorks.Enrollment
        
         public static int LinearSearchArray<T>(T[] array, T target) where T : IComparable<T>
         {
-            if (array == null) throw new ArgumentNullException(nameof(array));
-            int i = 0;
-            bool found = false;
-            while (!found && i < array.Length)
+            try
             {
-                if (array[i] != null && target.CompareTo(array[i]) == 0)
-                    found = true;
-                else
+                if (array == null) throw new ArgumentNullException(nameof(array));
+                int i = 0;
+                bool found = false;
+                while (!found && i < array.Length)
                 {
-                    i++;
-                }
+                    if (array[i] != null && target.CompareTo(array[i]) == 0)
+                        found = true;
+                    else
+                    {
+                        i++;
+                    }
 
+                }
+                if (i < array.Length)
+                    return i;
+                else
+                    return -1;
             }
-            if (i < array.Length)
-                return i;
-            else
-                return -1;
+            catch (ArgumentNullException)
+            {
+                // Provide a clearer message for null array parameter while preserving exception type
+                throw new ArgumentNullException(nameof(array), "Utility.LinearSearchArray: 'array' must not be null.");
+            }
+            catch (Exception ex)
+            {
+                // Wrap other exceptions to add context while preserving the original exception as inner
+                throw new InvalidOperationException("Utility.LinearSearchArray failed. See inner exception for details.", ex);
+            }
         }
 
        
@@ -68,22 +81,34 @@ namespace ITWorks.Enrollment
        
         public static int BinarySearchArray<T>(T[] array, T target) where T : IComparable<T>
         {
-            //Array.Sort(array);
-            if (array == null) throw new ArgumentNullException(nameof(array));
-            int min = 0;
-            int max = array.Length - 1;
-            int mid;
-            do
+            try
             {
-                mid = (min + max) / 2;
-                if (array[mid].CompareTo(target) == 0)
-                    return mid;
-                if (array[mid].CompareTo(target) < 0)
-                    min = mid + 1;
-                else
-                    max = mid - 1;
-            } while (min <= max);
-            return -1;
+                //Array.Sort(array);
+                if (array == null) throw new ArgumentNullException(nameof(array));
+                int min = 0;
+                int max = array.Length - 1;
+                int mid;
+                do
+                {
+                    mid = (min + max) / 2;
+                    if (array[mid].CompareTo(target) == 0)
+                        return mid;
+                    if (array[mid].CompareTo(target) < 0)
+                        //min = mid + 1;
+                        min = mid;
+                    else
+                        max = mid - 1;
+                } while (min <= max);
+                return -1;
+            }
+            catch (ArgumentNullException)
+            {
+                throw new ArgumentNullException(nameof(array), "Utility.BinarySearchArray: 'array' must not be null.");
+            }
+            catch (Exception ex)
+            {
+                throw new InvalidOperationException("Utility.BinarySearchArray failed. See inner exception for details.", ex);
+            }
         }
 
 
@@ -107,21 +132,33 @@ namespace ITWorks.Enrollment
 
         public static void SortArrayAscending<T>(T[] array) where T : IComparable<T>
         {
-            if (array == null) throw new ArgumentNullException(nameof(array));
-            T temp;
-            for (int j = 0; j < array.Length - 1; j++)
+            try
             {
-                for (int i = 0; i < array.Length - 1; i++)
+                if (array == null) throw new ArgumentNullException(nameof(array));
+                T temp;
+                for (int j = 0; j < array.Length - 1; j++)
                 {
-                    if (array[i].CompareTo(array[i + 1]) > 0)
+                    for (int i = 0; i < array.Length - 1; i++)
                     {
-                        temp = array[i + 1];
-                        array[i + 1] = array[i];
-                        array[i] = temp;
+                        if (array[i].CompareTo(array[i + 1]) > 0)
+                        {
+                            temp = array[i + 1];
+                            array[i + 1] = array[i];
+                            array[i] = temp;
+                        }
                     }
                 }
             }
+            catch (ArgumentNullException)
+            {
+                throw new ArgumentNullException(nameof(array), "Utility.SortArrayAscending: 'array' must not be null.");
+            }
+            catch (Exception ex)
+            {
+                throw new InvalidOperationException("Utility.SortArrayAscending failed. See inner exception for details.", ex);
+            }
         }
+
 
 
         /// <summary>
@@ -144,19 +181,30 @@ namespace ITWorks.Enrollment
 
         public static void SortArrayDescending<T>(T[] array) where T : IComparable<T>
         {
-            if (array == null) throw new ArgumentNullException(nameof(array));
-            T temp;
-            for (int j = 0; j < array.Length - 1; j++)
+            try
             {
-                for (int i = 0; i < array.Length - 1; i++)
+                if (array == null) throw new ArgumentNullException(nameof(array));
+                T temp;
+                for (int j = 0; j < array.Length - 1; j++)
                 {
-                    if (array[i].CompareTo(array[i + 1]) < 0)
+                    for (int i = 0; i < array.Length - 1; i++)
                     {
-                        temp = array[i + 1];
-                        array[i + 1] = array[i];
-                        array[i] = temp;
+                        if (array[i].CompareTo(array[i + 1]) < 0)
+                        {
+                            temp = array[i + 1];
+                            array[i + 1] = array[i];
+                            array[i] = temp;
+                        }
                     }
                 }
+            }
+            catch (ArgumentNullException)
+            {
+                throw new ArgumentNullException(nameof(array), "Utility.SortArrayDescending: 'array' must not be null.");
+            }
+            catch (Exception ex)
+            {
+                throw new InvalidOperationException("Utility.SortArrayDescending failed. See inner exception for details.", ex);
             }
         }
 

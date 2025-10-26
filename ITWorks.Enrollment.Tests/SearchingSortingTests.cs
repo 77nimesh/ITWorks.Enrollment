@@ -1,6 +1,7 @@
 ﻿using ITWorks.Enrollment;
 using ITWorks.Enrollment.ConsoleApp;
 using NUnit.Framework;
+using System;
 using System.Linq;
 
 namespace ITWorks.Enrollment.Tests
@@ -75,5 +76,13 @@ namespace ITWorks.Enrollment.Tests
             var expected = new[] { "500", "400", "301", "250", "202", "175", "150", "120", "105", "099" };
             CollectionAssert.AreEqual(expected, ids);
         }
+
+        [Test]
+        public void LinearSearch_Throws_On_Null_Array()
+        {
+            Assert.Throws<ArgumentNullException>(() =>
+                Utility.LinearSearchArray<Student>(null, new Student { StudentID = "100" }));
+        }
+
     }
 }

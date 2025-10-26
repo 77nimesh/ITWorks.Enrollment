@@ -70,6 +70,14 @@ namespace ITWorks.Enrollment.ConsoleApp
             Console.WriteLine("Dictionary Count (expect 2): " + dict.Count);
             Console.WriteLine("Dictionary[sA]: " + dict[sA]); // "Overwrites same-ID"
 
+            Console.WriteLine("\n\n\t-------------Testing DataStructure---------------\n");
+
+            DSAtest.DemoSinglyLinkedList();
+            Console.WriteLine("\n");
+            DSAtest.DemoDoublyLinkedList();
+            Console.WriteLine();
+            Console.WriteLine("\n\t-------------Testing Binary Search Tree---------------\n");
+            BSTTest.BST_WithStudents();
 
             Console.WriteLine("\nAll constructors and ToString() executed. Press any key...");
 

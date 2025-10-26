@@ -103,5 +103,6 @@ namespace ITWorks.Enrollment.Tests
                 "Swapped expected order should not match ascending sort result.");
         }
 
+
     }
 }

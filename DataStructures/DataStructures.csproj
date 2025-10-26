@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E313FF46-2CB2-4D82-932B-E7F288A88CC0}</ProjectGuid>
+    <ProjectGuid>{2B532CC7-4F30-4A52-8BB5-B4F5C17DD529}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>ITWorks.Enrollment.ConsoleApp</RootNamespace>
-    <AssemblyName>ITWorks.Enrollment.ConsoleApp</AssemblyName>
+    <RootNamespace>DataStructures</RootNamespace>
+    <AssemblyName>DataStructures</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -22,7 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\ITWorks.Enrollment.ConsoleApp.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\DataStructures.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -44,25 +44,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Address.cs" />
-    <Compile Include="BSTTest.cs" />
-    <Compile Include="DSAtest.cs" />
-    <Compile Include="Enrollment.cs" />
-    <Compile Include="Person.cs" />
+    <Compile Include="BinarySearchTree.cs" />
+    <Compile Include="DoublyLinkedList.cs" />
+    <Compile Include="DoublyLinkedListNode.cs" />
+    <Compile Include="Node.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Student.cs" />
-    <Compile Include="Subject.cs" />
-    <Compile Include="Utility.cs" />
+    <Compile Include="SinglyLinkedList.cs" />
+    <Compile Include="SinglyLinkedListNode.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DataStructures\DataStructures.csproj">
-      <Project>{2b532cc7-4f30-4a52-8bb5-b4f5c17dd529}</Project>
-      <Name>DataStructures</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
