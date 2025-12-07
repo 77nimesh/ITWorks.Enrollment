@@ -94,10 +94,13 @@ namespace ITWorks.Enrollment
                     if (array[mid].CompareTo(target) == 0)
                         return mid;
                     if (array[mid].CompareTo(target) < 0)
+
                         min = mid + 1;
-                        //min = mid;
+
                     else
-                        max = mid - 1;
+                        max = mid - 1; 
+
+
                 } while (min <= max);
                 return -1;
             }
